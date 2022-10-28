@@ -168,10 +168,6 @@ public abstract class AbstractSurefireMojo
     extends AbstractMojo
     implements SurefireExecutionParameters
 {
-    private static final String FORK_ONCE = "once";
-    private static final String FORK_ALWAYS = "always";
-    private static final String FORK_NEVER = "never";
-    private static final String FORK_PERTHREAD = "perthread";
     private static final Map<String, String> JAVA_9_MATCHER_OLD_NOTATION = singletonMap( "version", "[1.9,)" );
     private static final Map<String, String> JAVA_9_MATCHER = singletonMap( "version", "[9,)" );
     private static final Platform PLATFORM = new Platform();
@@ -4015,27 +4011,6 @@ public abstract class AbstractSurefireMojo
     public void setResolutionErrorHandler( ResolutionErrorHandler resolutionErrorHandler )
     {
         this.resolutionErrorHandler = resolutionErrorHandler;
-    }
-
-    private static String getEffectiveForkMode( String forkMode )
-    {
-        if ( "pertest".equalsIgnoreCase( forkMode ) )
-        {
-            return FORK_ALWAYS;
-        }
-        else if ( "none".equalsIgnoreCase( forkMode ) )
-        {
-            return FORK_NEVER;
-        }
-        else if ( forkMode.equals( FORK_NEVER ) || forkMode.equals( FORK_ONCE )
-                || forkMode.equals( FORK_ALWAYS ) || forkMode.equals( FORK_PERTHREAD ) )
-        {
-            return forkMode;
-        }
-        else
-        {
-            throw new IllegalArgumentException( "Fork mode " + forkMode + " is not a legal value" );
-        }
     }
 
     private static final class ClasspathCache

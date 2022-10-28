@@ -32,7 +32,6 @@ import org.apache.maven.surefire.extensions.ForkNodeFactory;
 import org.apache.maven.surefire.api.suite.RunResult;
 import org.apache.maven.surefire.api.util.DefaultScanResult;
 import org.apache.maven.surefire.api.util.SureFireFileManager;
-import org.apache.maven.toolchain.Toolchain;
 import org.codehaus.plexus.logging.Logger;
 import org.junit.Test;
 
@@ -139,21 +138,6 @@ public class MojoMocklessTest
             return;
         }
         fail( "Expected NumberFormatException when converting " + value );
-    }
-
-    private static class MyToolChain implements Toolchain
-    {
-        @Override
-        public String getType()
-        {
-            return null;
-        }
-
-        @Override
-        public String findTool( String s )
-        {
-            return null;
-        }
     }
 
     @Test
