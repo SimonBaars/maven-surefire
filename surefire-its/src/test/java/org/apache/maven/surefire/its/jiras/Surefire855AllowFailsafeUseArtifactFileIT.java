@@ -40,14 +40,14 @@ public class Surefire855AllowFailsafeUseArtifactFileIT
     public void jarShouldUseFile()
     {
         unpack( "surefire-855-failsafe-use-jar" )
-            .maven().sysProp( "forkMode", "once" ).executeVerify().assertIntegrationTestSuiteResults( 3, 0, 0, 1 );
+            .maven().sysProp( "forkCount", 1 ).sysProp( "reuseForks", true ).executeVerify().assertIntegrationTestSuiteResults( 3, 0, 0, 1 );
     }
 
     @Test
     public void jarNotForkingShouldUseFile()
     {
         unpack( "surefire-855-failsafe-use-jar" )
-            .maven().sysProp( "forkMode", "never" ).executeVerify().assertIntegrationTestSuiteResults( 3, 0, 0, 1 );
+            .maven().sysProp( "forkCount", 0 ).executeVerify().assertIntegrationTestSuiteResults( 3, 0, 0, 1 );
     }
 
     @Test

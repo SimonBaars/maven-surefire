@@ -36,7 +36,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Test forkMode in a multi module project with parallel maven builds
+ * Test forking in a multi-module project with parallel maven builds
  *
  * @author Andreas Gudian
  */
@@ -130,11 +130,11 @@ public class ForkModeMultiModuleIT extends SurefireJUnit4IntegrationTestCase
         assertDifferentPids( pids, pids.size() );
     }
 
-    private List<String> doTest( SurefireLauncher forkMode )
+    private List<String> doTest( SurefireLauncher forkLauncher )
     {
-        forkMode.addGoal( "-T2" );
-        forkMode.sysProp( "testProperty", "testValue_${surefire.threadNumber}_${surefire.forkNumber}" );
-        final OutputValidator outputValidator = forkMode.setForkJvm().executeTest();
+        forkLauncher.addGoal( "-T2" );
+        forkLauncher.sysProp( "testProperty", "testValue_${surefire.threadNumber}_${surefire.forkNumber}" );
+        final OutputValidator outputValidator = forkLauncher.setForkJvm().executeTest();
         List<String> pids = new ArrayList<>( 6 );
         pids.addAll( validateModule( outputValidator, "module-a" ) );
         pids.addAll( validateModule( outputValidator, "module-b" ) );
