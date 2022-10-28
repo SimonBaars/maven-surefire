@@ -60,7 +60,8 @@ public class ResultCountingIT
     private void assertForkCount( int forkCount, boolean reuseForks )
         throws IOException, VerificationException
     {
-        OutputValidator outputValidator = unpack( "result-counting" ).failNever().forkCount( forkCount ).reuseForks( reuseForks ).executeTest();
+        OutputValidator outputValidator = unpack( "result-counting" ).failNever().forkCount( forkCount )
+            .reuseForks( reuseForks ).executeTest();
         outputValidator.assertTestSuiteResults( 36, 23, 4, 2 );
         outputValidator.verifyTextInLog( "Tests run: 36, Failures: 4, Errors: 23, Skipped: 2" );
     }
