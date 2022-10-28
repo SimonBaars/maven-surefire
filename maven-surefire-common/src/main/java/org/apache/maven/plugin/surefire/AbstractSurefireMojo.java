@@ -363,23 +363,6 @@ public abstract class AbstractSurefireMojo
     private boolean failIfNoTests;
 
     /**
-     * <strong>DEPRECATED</strong> since version 2.14. Use {@code forkCount} and {@code reuseForks} instead.
-     * <br>
-     * <br>
-     * Option to specify the forking mode. Can be {@code never}, {@code once}, {@code always}, {@code perthread}.<br>
-     * The {@code none} and {@code pertest} are also accepted for backwards compatibility.<br>
-     * The {@code always} forks for each test-class.<br>
-     * The {@code perthread} creates the number of parallel forks specified by {@code threadCount}, where each forked
-     * JVM is executing one test-class. See also the parameter {@code reuseForks} for the lifetime of JVM.
-     *
-     * @since 2.1
-     * @deprecated
-     */
-    @Deprecated
-    @Parameter( property = "forkMode", defaultValue = "once" )
-    private String forkMode;
-
-    /**
      * Relative path to <i>temporary-surefire-boot</i> directory containing internal Surefire temporary files.
      * <br>
      * The <i>temporary-surefire-boot</i> directory is <i>project.build.directory</i> on most platforms or
@@ -1123,10 +1106,8 @@ public abstract class AbstractSurefireMojo
         else
         {
             ensureEnableProcessChecker();
-            convertDeprecatedForkMode();
             ensureWorkingDirectoryExists();
             ensureParallelRunningCompatibility();
-            ensureThreadCountWithPerThread();
             warnIfUselessUseSystemClassLoaderParameter();
             warnIfDefunctGroupsCombinations();
             warnIfRerunClashes();
@@ -1796,26 +1777,9 @@ public abstract class AbstractSurefireMojo
         return isWithinVersionSpec( artifact, "[4.0,)" );
     }
 
-    private static boolean isForkModeNever( String forkMode )
-    {
-        return FORK_NEVER.equals( forkMode );
-    }
-
     protected boolean isForking()
     {
         return 0 < getEffectiveForkCount();
-    }
-
-    String getEffectiveForkMode()
-    {
-        String forkMode1 = getForkMode();
-
-        if ( toolchain != null && isForkModeNever( forkMode1 ) )
-        {
-            return FORK_ONCE;
-        }
-
-        return getEffectiveForkMode( forkMode1 );
     }
 
     private List<RunOrder> getRunOrders()
@@ -2557,31 +2521,6 @@ public abstract class AbstractSurefireMojo
         }
     }
 
-    private void convertDeprecatedForkMode()
-    {
-        String effectiveForkMode = getEffectiveForkMode();
-        // FORK_ONCE (default) is represented by the default values of forkCount and reuseForks
-        if ( FORK_PERTHREAD.equals( effectiveForkMode ) )
-        {
-            forkCount = String.valueOf( threadCount );
-        }
-        else if ( FORK_NEVER.equals( effectiveForkMode ) )
-        {
-            forkCount = "0";
-        }
-        else if ( FORK_ALWAYS.equals( effectiveForkMode ) )
-        {
-            forkCount = "1";
-            reuseForks = false;
-        }
-
-        if ( !FORK_ONCE.equals( getForkMode() ) )
-        {
-            getConsoleLogger().warning( "The parameter forkMode is deprecated since version 2.14. "
-                                                + "Use forkCount and reuseForks instead." );
-        }
-    }
-
     @SuppressWarnings( "checkstyle:emptyblock" )
     protected int getEffectiveForkCount()
     {
@@ -2764,7 +2703,6 @@ public abstract class AbstractSurefireMojo
         checksum.add( getReportNameSuffix() );
         checksum.add( isUseFile() );
         checksum.add( isRedirectTestOutputToFile() );
-        checksum.add( getForkMode() );
         checksum.add( getForkCount() );
         checksum.add( isReuseForks() );
         checksum.add( getJvm() );
@@ -2970,15 +2908,6 @@ public abstract class AbstractSurefireMojo
         if ( isMavenParallel() && isNotForking() )
         {
             throw new MojoFailureException( "parallel maven execution is not compatible with surefire forkCount 0" );
-        }
-    }
-
-    private void ensureThreadCountWithPerThread()
-        throws MojoFailureException
-    {
-        if ( FORK_PERTHREAD.equals( getEffectiveForkMode() ) && getThreadCount() < 1 )
-        {
-            throw new MojoFailureException( "Fork mode perthread requires a thread count" );
         }
     }
 
@@ -3676,17 +3605,6 @@ public abstract class AbstractSurefireMojo
     public void setFailIfNoTests( boolean failIfNoTests )
     {
         this.failIfNoTests = failIfNoTests;
-    }
-
-    public String getForkMode()
-    {
-        return forkMode;
-    }
-
-    @SuppressWarnings( "UnusedDeclaration" )
-    public void setForkMode( String forkMode )
-    {
-        this.forkMode = forkMode;
     }
 
     public String getJvm()

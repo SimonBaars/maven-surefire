@@ -101,16 +101,6 @@ public class MojoMocklessTest
     }
 
     @Test
-    public void testForkMode()
-    {
-        AbstractSurefireMojo surefirePlugin = new Mojo( null, null );
-        setInternalState( surefirePlugin, "toolchain", new MyToolChain() );
-        setInternalState( surefirePlugin, "forkMode", "never" );
-        assertThat( surefirePlugin.getEffectiveForkMode() )
-                .isEqualTo( "once" );
-    }
-
-    @Test
     @SuppressWarnings( "checkstyle:magicnumber" )
     public void testForkCountComputation()
     {
