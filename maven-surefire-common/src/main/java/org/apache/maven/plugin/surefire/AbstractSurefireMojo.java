@@ -419,7 +419,7 @@ public abstract class AbstractSurefireMojo
 
     /**
      * When false it makes tests run using the standard classloader delegation instead of the default Maven isolated
-     * classloader. Only used when forking ({@code forkMode} is not {@code none}).<br>
+     * classloader. Only used when forking ({@code forkCount} is greater than zero).<br>
      * Setting it to false helps with some problems caused by conflicts between xml parsers in the classpath and the
      * Java 5 provider parser.
      *
@@ -2104,7 +2104,7 @@ public abstract class AbstractSurefireMojo
         return getPluginArtifactMap().get( "org.apache.maven.surefire:surefire-shadefire" );
     }
 
-    private StartupReportConfiguration getStartupReportConfiguration( String configChecksum, boolean isForkMode )
+    private StartupReportConfiguration getStartupReportConfiguration( String configChecksum, boolean isForking )
     {
         SurefireStatelessReporter xmlReporter =
                 statelessTestsetReporter == null
@@ -2125,7 +2125,7 @@ public abstract class AbstractSurefireMojo
                                                getReportsDirectory(), isTrimStackTrace(), getReportNameSuffix(),
                                                getStatisticsFile( configChecksum ), requiresRunHistory(),
                                                getRerunFailingTestsCount(), getReportSchemaLocation(), getEncoding(),
-                                               isForkMode, xmlReporter, outReporter, testsetReporter );
+                                               isForking, xmlReporter, outReporter, testsetReporter );
     }
 
     private boolean isSpecificTestSpecified()
