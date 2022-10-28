@@ -46,7 +46,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
-          <forkCount>${forkCount}</forkCount>
           <threadCount>${threadCount}</threadCount>
           <runOrder>alphabetical</runOrder>
         </configuration>

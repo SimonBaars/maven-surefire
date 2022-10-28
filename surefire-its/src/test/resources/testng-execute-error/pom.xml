@@ -69,7 +69,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
-          <forkCount>1</forkCount>
           <useFile>true</useFile>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
         </configuration>

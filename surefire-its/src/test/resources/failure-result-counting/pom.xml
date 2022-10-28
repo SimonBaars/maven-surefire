@@ -21,7 +21,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
-          <forkCount>${forkCount}</forkCount>
           <includes>
             <include>**/*.java</include>
           </includes>
@@ -31,7 +30,6 @@
   </build>
   <properties>
     <junit.version>4.10</junit.version>
-    <forkCount>1</forkCount>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
