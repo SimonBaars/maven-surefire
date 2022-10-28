@@ -117,7 +117,7 @@
           </execution>
         </executions>
         <configuration>
-          <forkMode>${forkMode}</forkMode>
+          <forkCount>${forkCount}</forkCount>
         </configuration>
       </plugin>
     </plugins>
