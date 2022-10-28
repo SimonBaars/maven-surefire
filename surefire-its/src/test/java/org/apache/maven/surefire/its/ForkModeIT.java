@@ -80,22 +80,13 @@ public class ForkModeIT
     }
 
     @Test
-    public void testForkModeNone()
-    {
-        String[] pids = doTest( unpack( getProject() ).forkMode( "none" ) );
-        assertSamePids( pids );
-        assertEndWith( pids, "_1_1", 3 );
-        assertEquals( "my pid is equal to pid 1 of the test", getMainPID(), pids[0] );
-    }
-
-    @Test
     public void testForkModeOncePerThreadSingleThread()
     {
+        int threadCount = 1;
         String[] pids = doTest( unpack( getProject() )
                 .setForkJvm()
-                .forkPerThread()
-                .reuseForks( true )
-                .threadCount( 1 ) );
+                .forkPerThread( threadCount )
+                .threadCount( threadCount ) );
         assertSamePids( pids );
         assertEndWith( pids, "_1_1", 3 );
         assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
@@ -104,22 +95,13 @@ public class ForkModeIT
     @Test
     public void testForkModeOncePerThreadTwoThreads()
     {
+        int threadCount = 2;
         String[] pids = doTest( unpack( getProject() )
-                .forkPerThread()
-                .reuseForks( true )
-                .threadCount( 2 )
+                .forkPerThread( threadCount )
+                .threadCount( threadCount )
                 .addGoal( "-DsleepLength=7200" ) );
         assertDifferentPids( pids, 2 );
         assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
-    }
-
-    @Test
-    public void testForkCountZero()
-    {
-        String[] pids = doTest( unpack( getProject() ).forkCount( 0 ) );
-        assertSamePids( pids );
-        assertEndWith( pids, "_1_1", 3 );
-        assertEquals( "my pid is equal to pid 1 of the test", getMainPID(), pids[0] );
     }
 
     @Test

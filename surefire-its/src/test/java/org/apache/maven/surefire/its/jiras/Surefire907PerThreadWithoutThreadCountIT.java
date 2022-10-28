@@ -34,7 +34,7 @@ public class Surefire907PerThreadWithoutThreadCountIT
     public void categoryAB()
     {
         OutputValidator validator = unpack( "fork-mode" )
-                .forkPerThread()
+                .forkPerThread( 1 )
                 .reuseForks( false )
                 .maven()
                 .withFailure()
