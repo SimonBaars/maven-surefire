@@ -1,4 +1,4 @@
-package org.apache.maven.surefire.its.jiras;
+package forkCount;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,20 +19,16 @@ package org.apache.maven.surefire.its.jiras;
  * under the License.
  */
 
-import org.apache.maven.surefire.its.fixture.SurefireJUnit4IntegrationTestCase;
-import org.junit.Test;
+import java.io.IOException;
 
-/**
- * Test
- *
- * @author Kristian Rosenvold
- */
-public class Surefire801ForkModeNoneClassLoaderIT
-    extends SurefireJUnit4IntegrationTestCase
+import junit.framework.TestCase;
+
+public class Test3
+    extends TestCase
 {
-    @Test
-    public void testSHouldBeOkWithForkNever()
-    {
-        unpack( "fork-count-resource-loading" ).forkNever().executeTest();
+
+    public void test3() throws IOException {
+        Test1.dumpPidFile(this);
     }
+
 }

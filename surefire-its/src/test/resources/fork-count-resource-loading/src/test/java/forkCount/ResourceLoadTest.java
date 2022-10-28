@@ -1,4 +1,4 @@
-package org.apache.maven.surefire.its.jiras;
+package forkCount;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,20 +19,28 @@ package org.apache.maven.surefire.its.jiras;
  * under the License.
  */
 
-import org.apache.maven.surefire.its.fixture.SurefireJUnit4IntegrationTestCase;
-import org.junit.Test;
+import junit.framework.TestCase;
 
-/**
- * Test
- *
- * @author Kristian Rosenvold
- */
-public class Surefire801ForkModeNoneClassLoaderIT
-    extends SurefireJUnit4IntegrationTestCase
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+public class ResourceLoadTest
+    extends TestCase
 {
-    @Test
-    public void testSHouldBeOkWithForkNever()
-    {
-        unpack( "fork-count-resource-loading" ).forkNever().executeTest();
+
+    public void testGetResourceUrl() throws IOException {
+        final URL resource = this.getClass().getClassLoader().getResource( "myFile.txt" );
+        assertNotNull(  resource );
+    }
+
+    public void testGetResource() throws IOException {
+        final InputStream resource = this.getClass().getClassLoader().getResourceAsStream( "myFile.txt" );
+        assertNotNull(  resource );
+    }
+
+    public void testGetResourceThreadLoader() throws IOException {
+        final InputStream resource = Thread.currentThread().getContextClassLoader().getResourceAsStream( "myFile.txt" );
+        assertNotNull(  resource );
     }
 }

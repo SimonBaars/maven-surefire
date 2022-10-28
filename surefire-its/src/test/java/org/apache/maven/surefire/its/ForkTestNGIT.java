@@ -30,6 +30,6 @@ public class ForkTestNGIT
     @Override
     protected String getProject()
     {
-        return "fork-mode-testng";
+        return "fork-count-testng";
     }
 }

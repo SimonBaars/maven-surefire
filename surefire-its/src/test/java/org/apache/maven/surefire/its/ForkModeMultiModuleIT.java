@@ -159,7 +159,7 @@ public class ForkModeMultiModuleIT extends SurefireJUnit4IntegrationTestCase
 
     protected String getProject()
     {
-        return "fork-mode-multimodule";
+        return "fork-count-multimodule";
     }
 
 

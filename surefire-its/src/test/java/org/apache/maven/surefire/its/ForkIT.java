@@ -217,7 +217,7 @@ public class ForkIT
 
     protected String getProject()
     {
-        return "fork-mode";
+        return "fork-count";
     }
 
 }
