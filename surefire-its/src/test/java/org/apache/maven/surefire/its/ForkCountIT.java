@@ -39,7 +39,7 @@ import org.junit.Test;
  * 
  * @author <a href="mailto:dfabulich@apache.org">Dan Fabulich</a>
  */
-public class ForkIT
+public class ForkCountIT
     extends SurefireJUnit4IntegrationTestCase
 {
 
@@ -49,7 +49,7 @@ public class ForkIT
     public static void installDumpPidPlugin()
         throws Exception
     {
-        unpack( ForkIT.class, "test-helper-dump-pid-plugin", "plugin" ).executeInstall();
+        unpack( ForkCountIT.class, "test-helper-dump-pid-plugin", "plugin" ).executeInstall();
     }
 
     @Test
@@ -161,7 +161,7 @@ public class ForkIT
     }
 
     @Test
-    public void testForkModeOnce()
+    public void testForkOnce()
     {
         String[] pids = doTest( unpack( getProject() ).forkOnce() );
         assertSamePids( pids );

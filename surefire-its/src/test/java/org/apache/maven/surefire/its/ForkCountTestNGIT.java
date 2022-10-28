@@ -24,8 +24,8 @@ package org.apache.maven.surefire.its;
  *
  * @author <a href="mailto:velo.br@gmail.com">Marvin Froeder</a>
  */
-public class ForkTestNGIT
-    extends ForkIT
+public class ForkCountTestNGIT
+    extends ForkCountIT
 {
     @Override
     protected String getProject()

@@ -40,7 +40,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Andreas Gudian
  */
-public class ForkModeMultiModuleIT extends SurefireJUnit4IntegrationTestCase
+public class ForkCountMultiModuleIT extends SurefireJUnit4IntegrationTestCase
 {
     @Test
     public void testForkCountOneNoReuse()

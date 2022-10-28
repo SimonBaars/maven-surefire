@@ -27,11 +27,11 @@ import org.junit.Test;
  *
  * @author Kristian Rosenvold
  */
-public class Surefire801ForkModeNoneClassLoaderIT
+public class Surefire801ForkNeverClassLoaderIT
     extends SurefireJUnit4IntegrationTestCase
 {
     @Test
-    public void testSHouldBeOkWithForkNever()
+    public void testShouldBeOkWithForkNever()
     {
         unpack( "fork-count-resource-loading" ).forkNever().executeTest();
     }
