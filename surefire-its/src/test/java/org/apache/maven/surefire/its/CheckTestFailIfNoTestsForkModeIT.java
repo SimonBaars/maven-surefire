@@ -24,7 +24,7 @@ import org.apache.maven.surefire.its.fixture.SurefireLauncher;
 import org.junit.Test;
 
 /**
- * Test failIfNoTests with various forkModes.
+ * Test failIfNoTests with various forking strategies.
  *
  * @author <a href="mailto:dfabulich@apache.org">Dan Fabulich</a>
  * @author <a href="mailto:krosenvold@apache.org">Kristian Rosenvold</a>
@@ -33,37 +33,37 @@ public class CheckTestFailIfNoTestsForkModeIT
     extends SurefireJUnit4IntegrationTestCase
 {
     @Test
-    public void failIfNoTestsForkModeAlways()
+    public void failIfNoTestsForkAlways()
     {
         unpack().forkAlways().failIfNoTests( true ).maven().withFailure().executeTest();
     }
 
     @Test
-    public void failIfNoTestsForkModeNever()
+    public void failIfNoTestsForkNever()
     {
         unpack().forkNever().failIfNoTests( true ).maven().withFailure().executeTest();
     }
 
     @Test
-    public void failIfNoTestsForkModeOnce()
+    public void failIfNoTestsForkOnce()
     {
         unpack().forkOnce().failIfNoTests( true ).maven().withFailure().executeTest();
     }
 
     @Test
-    public void dontFailIfNoTestsForkModeAlways()
+    public void dontFailIfNoTestsForkAlways()
     {
         doTest( unpack().forkAlways().failIfNoTests( false ) );
     }
 
     @Test
-    public void dontFailIfNoTestsForkModeNever()
+    public void dontFailIfNoTestsForkNever()
     {
         doTest( unpack().forkNever().failIfNoTests( false ) );
     }
 
     @Test
-    public void dontFailIfNoTestsForkModeOnce()
+    public void dontFailIfNoTestsForkOnce()
     {
         doTest( unpack().forkOnce().failIfNoTests( false ) );
     }

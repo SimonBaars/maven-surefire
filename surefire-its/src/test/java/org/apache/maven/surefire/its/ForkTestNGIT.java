@@ -20,12 +20,12 @@ package org.apache.maven.surefire.its;
  */
 
 /**
- * Test forkMode
+ * Test forkCount and reuseForks
  *
  * @author <a href="mailto:velo.br@gmail.com">Marvin Froeder</a>
  */
-public class ForkModeTestNGIT
-    extends ForkModeIT
+public class ForkTestNGIT
+    extends ForkIT
 {
     @Override
     protected String getProject()

@@ -35,11 +35,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Test forkMode
+ * Test forkCount and reuseForks
  * 
  * @author <a href="mailto:dfabulich@apache.org">Dan Fabulich</a>
  */
-public class ForkModeIT
+public class ForkIT
     extends SurefireJUnit4IntegrationTestCase
 {
 
@@ -49,11 +49,11 @@ public class ForkModeIT
     public static void installDumpPidPlugin()
         throws Exception
     {
-        unpack( ForkModeIT.class, "test-helper-dump-pid-plugin", "plugin" ).executeInstall();
+        unpack( ForkIT.class, "test-helper-dump-pid-plugin", "plugin" ).executeInstall();
     }
 
     @Test
-    public void testForkModeAlways()
+    public void testForkAlways()
     {
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkAlways() );
         assertDifferentPids( pids );
@@ -62,7 +62,7 @@ public class ForkModeIT
     }
 
     @Test
-    public void testForkModePerTest()
+    public void testForkPerTest()
     {
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkPerTest() );
         assertDifferentPids( pids );
@@ -71,7 +71,7 @@ public class ForkModeIT
     }
 
     @Test
-    public void testForkModeNever()
+    public void testForkNever()
     {
         String[] pids = doTest( unpack( getProject() ).forkNever() );
         assertSamePids( pids );
@@ -80,7 +80,7 @@ public class ForkModeIT
     }
 
     @Test
-    public void testForkModeOncePerThreadSingleThread()
+    public void testForkOncePerThreadSingleThread()
     {
         int threadCount = 1;
         String[] pids = doTest( unpack( getProject() )
@@ -93,7 +93,7 @@ public class ForkModeIT
     }
 
     @Test
-    public void testForkModeOncePerThreadTwoThreads()
+    public void testForkOncePerThreadTwoThreads()
     {
         int threadCount = 2;
         String[] pids = doTest( unpack( getProject() )
@@ -199,11 +199,11 @@ public class ForkModeIT
         }
     }
 
-    private String[] doTest( SurefireLauncher forkMode )
+    private String[] doTest( SurefireLauncher forkLauncher )
     {
-        forkMode.sysProp( "testProperty", "testValue_${surefire.threadNumber}_${surefire.forkNumber}" );
-        forkMode.addGoal( "org.apache.maven.plugins.surefire:maven-dump-pid-plugin:dump-pid" );
-        outputValidator = forkMode.executeTest();
+        forkLauncher.sysProp( "testProperty", "testValue_${surefire.threadNumber}_${surefire.forkNumber}" );
+        forkLauncher.addGoal( "org.apache.maven.plugins.surefire:maven-dump-pid-plugin:dump-pid" );
+        outputValidator = forkLauncher.executeTest();
         outputValidator.verifyErrorFreeLog().assertTestSuiteResults( 3, 0, 0, 0 );
         String[] pids = new String[3];
         for ( int i = 1; i <= pids.length; i++ )
