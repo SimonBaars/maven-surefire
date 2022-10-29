@@ -29,8 +29,7 @@
   <name>Test for checking environment variables into forks</name>
 
     <properties>
-      <forkCount>1</forkCount>
-      <reuseForks>false</reuseForks>
+      <forkMode>always</forkMode>
       <useSystemClassLoader>false</useSystemClassLoader>
       <maven.compiler.source>1.7</maven.compiler.source>
       <maven.compiler.target>1.7</maven.compiler.target>
@@ -50,7 +49,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
-          <forkCount>${forkCount}</forkCount>
+          <forkMode>${forkMode}</forkMode>
           <useSystemClassLoader>${useSystemClassLoader}</useSystemClassLoader>
           <environmentVariables>
             <DUMMY_ENV_VAR>foo</DUMMY_ENV_VAR>

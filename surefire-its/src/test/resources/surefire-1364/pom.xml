@@ -34,7 +34,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <forkCount>1</forkCount>
+        <forkedMode>once</forkedMode>
     </properties>
 
     <dependencies>
@@ -64,7 +64,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
-                        <forkCount>${forkCount}</forkCount>
+                        <forkMode>${forkedMode}</forkMode>
                         <systemPropertyVariables>
                             <forkedProp>forkedValue${surefire.forkNumber}</forkedProp>
                         </systemPropertyVariables>

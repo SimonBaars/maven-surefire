@@ -54,7 +54,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
-                                    <forkCount>1</forkCount>
+                                    <forkMode>once</forkMode>
                                 </configuration>
                             </execution>
                         </executions>
@@ -90,7 +90,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
-                                    <forkCount>1</forkCount>
+                                    <forkMode>once</forkMode>
                                 </configuration>
                             </execution>
                         </executions>
@@ -124,7 +124,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
-                                    <forkCount>1</forkCount>
+                                    <forkMode>once</forkMode>
                                 </configuration>
                             </execution>
                         </executions>
@@ -166,7 +166,7 @@
                                     <includes>
                                         <include>JUnit4AdapterSuiteTest</include>
                                     </includes>
-                                    <forkCount>1</forkCount>
+                                    <forkMode>once</forkMode>
                                 </configuration>
                             </execution>
                         </executions>
@@ -198,7 +198,7 @@
                                     <includes>
                                         <include>JUnit4AdapterSuiteTest</include>
                                     </includes>
-                                    <forkCount>1</forkCount>
+                                    <forkMode>once</forkMode>
                                 </configuration>
                             </execution>
                         </executions>
