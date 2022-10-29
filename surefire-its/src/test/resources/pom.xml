@@ -20,7 +20,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${surefire.version}</version>
           <configuration>
-            <forkMode>never</forkMode>
+            <forkCount>0</forkCount>
             <enableProcessChecker>all</enableProcessChecker>
           </configuration>
         </plugin>
@@ -28,7 +28,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${surefire.version}</version>
           <configuration>
-            <forkMode>never</forkMode>
+            <forkCount>0</forkCount>
             <enableProcessChecker>all</enableProcessChecker>
           </configuration>
         </plugin>
