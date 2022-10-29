@@ -22,6 +22,7 @@
            <artifactId>maven-surefire-plugin</artifactId>
            <version>${surefire.version}</version>
            <configuration>
+             <forkCount>${forkCount}</forkCount>
              <printSummary>${printSummary}</printSummary>
              <useFile>true</useFile>
              <reportFormat>${reportFormat}</reportFormat>
@@ -36,6 +37,7 @@
 
     <properties>
       <junit.version>4.8.1</junit.version>
+      <forkCount>1</forkCount>
       <printSummary>true</printSummary>
       <reportFormat>brief</reportFormat>
       <maven.compiler.source>1.7</maven.compiler.source>

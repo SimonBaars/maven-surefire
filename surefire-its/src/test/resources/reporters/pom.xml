@@ -25,6 +25,7 @@
            <version>${surefire.version}</version>
            <configuration>
              <disableXmlReport>false</disableXmlReport>
+             <forkCount>${forkCount}</forkCount>
              <printSummary>${printSummary}</printSummary>
              <useFile>true</useFile>
              <redirectTestOutputToFile>${redirect.to.file}</redirectTestOutputToFile>
@@ -40,6 +41,7 @@
     <properties>
       <junit.version>4.8.1</junit.version>
       <redirect.to.file>true</redirect.to.file>
+      <forkCount>1</forkCount>
       <printSummary>true</printSummary>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>

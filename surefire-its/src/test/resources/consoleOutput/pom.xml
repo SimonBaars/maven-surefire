@@ -31,6 +31,7 @@
            <configuration>
              <redirectTestOutputToFile>true</redirectTestOutputToFile>
              <testFailureIgnore>true</testFailureIgnore>
+             <forkCount>${forkCount}</forkCount>
              <includes>
                 <include>**/Test*.java</include>
              </includes>

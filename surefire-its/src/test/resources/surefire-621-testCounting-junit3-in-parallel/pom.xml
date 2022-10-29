@@ -54,6 +54,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
+                                    <forkCount>1</forkCount>
                                 </configuration>
                             </execution>
                         </executions>
@@ -89,6 +90,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
+                                    <forkCount>1</forkCount>
                                 </configuration>
                             </execution>
                         </executions>
@@ -122,6 +124,7 @@
                                         <include>**/MySuiteTest2.java</include>
                                         <include>**/MySuiteTest3.java</include>
                                     </includes>
+                                    <forkCount>1</forkCount>
                                 </configuration>
                             </execution>
                         </executions>
@@ -163,6 +166,7 @@
                                     <includes>
                                         <include>JUnit4AdapterSuiteTest</include>
                                     </includes>
+                                    <forkCount>1</forkCount>
                                 </configuration>
                             </execution>
                         </executions>
@@ -194,6 +198,7 @@
                                     <includes>
                                         <include>JUnit4AdapterSuiteTest</include>
                                     </includes>
+                                    <forkCount>1</forkCount>
                                 </configuration>
                             </execution>
                         </executions>
