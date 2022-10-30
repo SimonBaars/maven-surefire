@@ -20,7 +20,7 @@ package org.apache.maven.surefire.its;
  */
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 import java.util.Arrays;
@@ -57,7 +57,7 @@ public class ForkModeIT
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkAlways() );
         assertDifferentPids( pids );
         assertEndWith( pids, "_1_1", 3 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ForkModeIT
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkPerTest() );
         assertDifferentPids( pids );
         assertEndWith( pids, "_1_1", 3 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -97,7 +97,7 @@ public class ForkModeIT
                 .threadCount( 1 ) );
         assertSamePids( pids );
         assertEndWith( pids, "_1_1", 3 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -109,7 +109,7 @@ public class ForkModeIT
                 .threadCount( 2 )
                 .addGoal( "-DsleepLength=7200" ) );
         assertDifferentPids( pids, 2 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -127,7 +127,7 @@ public class ForkModeIT
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkCount( 1 ).reuseForks( false ) );
         assertDifferentPids( pids );
         assertEndWith( pids, "_1_1", 3 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -136,7 +136,7 @@ public class ForkModeIT
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkCount( 1 ).reuseForks( true ) );
         assertSamePids( pids );
         assertEndWith( pids, "_1_1", 3 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -145,7 +145,7 @@ public class ForkModeIT
         String[] pids = doTest( unpack( getProject() ).setForkJvm().forkCount( 2 ).reuseForks( false )
                 .addGoal( "-DsleepLength=7200" ) );
         assertDifferentPids( pids );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     @Test
@@ -154,7 +154,7 @@ public class ForkModeIT
         String[] pids =
             doTest( unpack( getProject() ).forkCount( 2 ).reuseForks( true ).addGoal( "-DsleepLength=7200" ) );
         assertDifferentPids( pids, 2 );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     private void assertEndWith( String[] pids, String suffix, int expectedMatches )
@@ -182,7 +182,7 @@ public class ForkModeIT
     {
         String[] pids = doTest( unpack( getProject() ).forkOnce() );
         assertSamePids( pids );
-        assertFalse( "pid 1 is not the same as the main process' pid", pids[0].equals( getMainPID() ) );
+        assertNotEquals( "pid 1 is not the same as the main process' pid", pids[0], getMainPID() );
     }
 
     private String getMainPID()
