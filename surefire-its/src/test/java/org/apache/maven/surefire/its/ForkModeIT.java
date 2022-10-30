@@ -47,7 +47,6 @@ public class ForkModeIT
 
     @BeforeClass
     public static void installDumpPidPlugin()
-        throws Exception
     {
         unpack( ForkModeIT.class, "test-helper-dump-pid-plugin", "plugin" ).executeInstall();
     }
